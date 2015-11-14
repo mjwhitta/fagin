@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
     s.authors = [ "Miles Whittaker" ]
     s.email = "mjwhitta@gmail.com"
     s.files = Dir["lib/**/*.rb"]
-    s.homepage = "http://mjwhitta.github.io/fagin"
+    s.homepage = "https://mjwhitta.github.io/fagin"
     s.license = "GPL-3.0"
 end
