@@ -1,12 +1,16 @@
 # Fagin
 
+## What is this?
+
 This ruby gem allows you to dynamically `require` children classes.
 This allows developers to write ruby gems which allow users to extend
 the default functionality via custom classes.
 
-## Why the name fagin?
+## How to install
 
-It's an [Oliver Twist](https://en.wikipedia.org/wiki/Fagin) reference.
+```bash
+$ gem install fagin
+```
 
 ## Usage
 
@@ -19,6 +23,10 @@ children.each do |child_class_name, child_obj|
     ... # do stuff here
 end
 ```
+
+## Why the name fagin?
+
+It's an [Oliver Twist](https://en.wikipedia.org/wiki/Fagin) reference.
 
 ## Links
 
