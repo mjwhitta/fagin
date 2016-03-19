@@ -21,7 +21,7 @@ class Fagin
                     child = clas.split("::").inject(Object) do |m, c|
                         m.const_get(c)
                     end.new
-                rescue NameError => e
+                rescue NameError
                     raise Error::UnknownChildClassError.new(clas)
                 end
                 children[clas] = child if (child)
