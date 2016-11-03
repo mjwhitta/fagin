@@ -6,25 +6,23 @@ class Fagin
         path = Pathname.new(dir).expand_path
 
         Dir["#{path}/*.rb"].each do |file|
-            require_relative file
-
             %x(
-                \grep -E "^class .+ \< #{parent}" #{file} | \
+                \grep -E "^class .+ < #{parent}" #{file} | \
                     awk '{print $2}'
             ).each_line do |clas|
                 next if (clas.nil?)
                 clas.strip!
-                next if (clas.nil?)
+                next if (clas.empty?)
 
-                child = nil
                 begin
+                    require_relative file
                     child = clas.split("::").inject(Object) do |m, c|
                         m.const_get(c)
-                    end.new
+                    end
+                    children[clas] = child
                 rescue NameError
                     raise Error::UnknownChildClassError.new(clas)
                 end
-                children[clas] = child if (child)
             end
         end
 
