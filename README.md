@@ -8,7 +8,7 @@ the default functionality via custom classes.
 
 ## How to install
 
-```bash
+```
 $ gem install fagin
 ```
 
@@ -30,7 +30,6 @@ It's an [Oliver Twist](https://en.wikipedia.org/wiki/Fagin) reference.
 
 ## Links
 
-- [Homepage](https://mjwhitta.github.io/fagin)
 - [Source](https://gitlab.com/mjwhitta/fagin)
 - [Mirror](https://github.com/mjwhitta/fagin)
 - [RubyGems](https://rubygems.org/gems/fagin)
