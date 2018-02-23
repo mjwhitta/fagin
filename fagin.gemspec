@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = "fagin"
-    s.version = "1.0.2"
+    s.version = "1.0.3"
     s.date = Time.new.strftime("%Y-%m-%d")
     s.summary = "Dynamically load children classes"
     s.description =
@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
     s.files = Dir["lib/**/*.rb"]
     s.homepage = "https://mjwhitta.github.io/fagin"
     s.license = "GPL-3.0"
-    s.add_development_dependency("rake", "~> 10.5", ">= 10.5.0")
+    s.add_development_dependency("rake", "~> 12.3", ">= 12.3.0")
 end
