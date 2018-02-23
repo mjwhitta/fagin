@@ -5,24 +5,20 @@ class Fagin
         children = Hash.new
         path = Pathname.new(dir).expand_path
 
-        Dir["#{path}/*.rb"].each do |file|
-            %x(
-                \grep -E "^class .+ < #{parent}" #{file} | \
-                    awk '{print $2}'
-            ).each_line do |clas|
-                next if (clas.nil?)
-                clas.strip!
-                next if (clas.empty?)
-
-                begin
-                    require_relative file
-                    child = clas.split("::").inject(Object) do |m, c|
-                        m.const_get(c)
-                    end
-                    children[clas] = child
-                rescue NameError
-                    raise Error::UnknownChildClassError.new(clas)
+        %x(
+            \grep -EHo "^class +.+ *< *#{parent}" \
+            #{Dir["#{path}/*.rb"].join(" ")}
+        ).each_line do |line|
+            clas = line.match(/class\s+(\S+)\s*</)[1]
+            next if (clas.nil? || clas.empty?)
+            begin
+                require_relative line.match(/^([^:]+)/)[1]
+                child = clas.split("::").inject(Object) do |m, c|
+                    m.const_get(c)
                 end
+                children[clas] = child
+            rescue NameError
+                raise Error::UnknownChildClassError.new(clas)
             end
         end
 
