@@ -5,9 +5,11 @@ class Fagin
         children = Hash.new
         path = Pathname.new(dir).expand_path
 
+        files = Dir["#{path}/*.rb"]
+        return children if (files.empty?)
+
         %x(
-            \grep -EHo "^class +.+ *< *#{parent}" \
-            #{Dir["#{path}/*.rb"].join(" ")}
+            \grep -EHo "^class +.+ *< *#{parent}" #{files.join(" ")}
         ).each_line do |line|
             clas = line.match(/class\s+(\S+)\s*</)[1]
             next if (clas.nil? || clas.empty?)
