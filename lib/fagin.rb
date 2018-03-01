@@ -9,18 +9,20 @@ class Fagin
         %x(
             \grep -EHos "^class +.+ *< *#{parent}" #{path}/*.rb
         ).each_line do |line|
-            clas = line.match(/class\s+(\S+)\s*</)[1]
-            next if (clas.nil? || clas.empty?)
-            file = line.match(/^([^:]+\.rb)/)[1]
-            next if (file.nil? || file.empty?)
-            begin
-                require_relative file
-                child = clas.split("::").inject(Object) do |m, c|
-                    m.const_get(c)
+            line.match(/^([^:]+\.rb).+class\s+(\S+)\s*</) do |match|
+                file = match[1]
+                next if (file.nil? || file.empty?)
+                clas = match[2]
+                next if (clas.nil? || clas.empty?)
+                begin
+                    require_relative file
+                    child = clas.split("::").inject(Object) do |m, c|
+                        m.const_get(c)
+                    end
+                    children[clas] = child
+                rescue NameError
+                    raise Error::UnknownChildClassError.new(clas)
                 end
-                children[clas] = child
-            rescue NameError
-                raise Error::UnknownChildClassError.new(clas)
             end
         end
 
@@ -35,18 +37,20 @@ class Fagin
         %x(
             \grep -EHors "^class +.+ *< *#{parent}" #{path}
         ).each_line do |line|
-            clas = line.match(/class\s+(\S+)\s*</)[1]
-            next if (clas.nil? || clas.empty?)
-            file = line.match(/^([^:]+\.rb)/)[1]
-            next if (file.nil? || file.empty?)
-            begin
-                require_relative file
-                child = clas.split("::").inject(Object) do |m, c|
-                    m.const_get(c)
+            line.match(/^([^:]+\.rb).+class\s+(\S+)\s*</) do |match|
+                file = match[1]
+                next if (file.nil? || file.empty?)
+                clas = match[2]
+                next if (clas.nil? || clas.empty?)
+                begin
+                    require_relative file
+                    child = clas.split("::").inject(Object) do |m, c|
+                        m.const_get(c)
+                    end
+                    children[clas] = child
+                rescue NameError
+                    raise Error::UnknownChildClassError.new(clas)
                 end
-                children[clas] = child
-            rescue NameError
-                raise Error::UnknownChildClassError.new(clas)
             end
         end
 
