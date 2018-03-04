@@ -21,7 +21,7 @@ class Fagin
                     end
                     children[clas] = child
                 rescue NameError
-                    raise Error::UnknownChildClassError.new(clas)
+                    raise Error::UnknownChildClass.new(clas)
                 end
             end
         end
@@ -49,7 +49,7 @@ class Fagin
                     end
                     children[clas] = child
                 rescue NameError
-                    raise Error::UnknownChildClassError.new(clas)
+                    raise Error::UnknownChildClass.new(clas)
                 end
             end
         end
