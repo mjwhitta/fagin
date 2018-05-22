@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = "fagin"
-    s.version = "1.1.3"
+    s.version = "1.2.0"
     s.date = Time.new.strftime("%Y-%m-%d")
     s.summary = "Dynamically load children classes"
     s.description =
