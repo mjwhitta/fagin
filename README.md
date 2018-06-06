@@ -31,7 +31,6 @@ It's an [Oliver Twist](https://en.wikipedia.org/wiki/Fagin) reference.
 ## Links
 
 - [Source](https://gitlab.com/mjwhitta/fagin)
-- [Mirror](https://github.com/mjwhitta/fagin)
 - [RubyGems](https://rubygems.org/gems/fagin)
 
 ## TODO
