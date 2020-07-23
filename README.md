@@ -1,5 +1,7 @@
 # Fagin
 
+<a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
+
 ## What is this?
 
 This ruby gem allows you to dynamically `require` children classes.
